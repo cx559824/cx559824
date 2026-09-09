@@ -1,27 +1,43 @@
-# 🏄‍♂️ Rodolfo Raquion
+# Rodolfo Raquion
 
-**`Digital Craftsman (Fullstack Developer)`**
+I build production systems where the failure cases matter more than the happy path -
+AI agents that touch real tools, money paths that have to reconcile, and the accounting
+and messaging plumbing underneath both.
 
-I'm a full-stack developer and content creator building my version of the digital world one step at a time. All coding projects are built from the ground up, from planning and designing all the way to solving real-life problems with code.
-
+Manila, working Australian hours. [raquion.com](https://raquion.com)
 
 ---
 
-### 🧰 Languages and Tools
-<img align="left" alt="TypeScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" />
-<img align="left" alt="Git" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
-<img align="left" alt="Linux" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" />
-<img align="left" alt="Arch Linux" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/archlinux/archlinux-original.svg" />
-<img align="left" alt="Go" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/go/go-original.svg" />
-<img align="left" alt="HTML" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" />
-<img align="left" alt="CSS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" />
-<img align="left" alt="TailwindCSS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" />
-<img align="left" alt="JavaScript" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
-<img align="left" alt="React" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
-<img align="left" alt="NodeJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
-<img align="left" alt="Python" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-plain.svg" />
-<img align="left" alt="GitHub" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
-<img align="left" alt="Bash" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" />
-<br />
+### What is worth looking at here
 
-#
+Most of my work belongs to the companies who paid for it. These two are mine, and they
+are the ones I would judge me on.
+
+**[invoice-relay](https://github.com/cx559824/invoice-relay)** - invoice ingestion, LLM
+extraction and payment reconciliation, built around the cases demos skip. Two idempotency
+keys, because one is not enough: a content hash catches the same file delivered twice, a
+normalised supplier + invoice number catches a re-issue arriving as different bytes.
+Every monetary amount is an integer number of minor units - never a float, never summed
+as one. The audit log is append-only and hash-chained, with tests that prove an edit and
+a deletion are both detected. Partial payments, overpayments, one payment spanning
+several invoices, and payments matching nothing each have defined behaviour rather than
+an exception. 58 tests, five dependencies, no build step.
+
+**[raquion-gallery.com](https://raquion-gallery.com)** - Go on Lambda over DynamoDB and
+S3. Uploads are presigned and multipart so nothing large passes through the API; objects
+age into Glacier on a lifecycle rule and a cold file is restored before it opens. The
+restore is idempotent, because a waiting user taps the button twice. 86 test files,
+deployed by SAM and GitHub Actions, OIDC-federated with no stored keys. Source private,
+site public.
+
+### The rest of this account
+
+A long tail of public repositories - Go, Rust, Python, TypeScript - much of it plainly
+learning in the open, and labelled as such rather than dressed up as products. I would
+rather you find it honestly described.
+
+### Writing
+
+[raquion.com/writing](https://raquion.com) - mostly failures that were quiet: things
+that reported success while doing nothing, and tests that passed while the feature was
+broken.
